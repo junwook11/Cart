@@ -3,8 +3,8 @@
     <BackMain id="back-button"></BackMain>
     Shop Cart
     <CartBox></CartBox>
-    <BarcodeInput></BarcodeInput>
-  </div>
+    <BarcodeInput @showModal="showThis"></BarcodeInput>
+    <BarcodeModal :show="show" @hide="show = false"></BarcodeModal>  </div>
 </template>
 
 <script>

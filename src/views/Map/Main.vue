@@ -16,8 +16,8 @@
         </div>
       </div>
     </div>
-    <BarcodeInput></BarcodeInput>
-  </div>
+    <BarcodeInput @showModal="showThis"></BarcodeInput>
+    <BarcodeModal :show="show" @hide="show = false"></BarcodeModal>  </div>
 </template>
 
 <script>
@@ -26,11 +26,17 @@ import ShoppingBox from '@/components/ShoppingBox.vue'
 import GoCart from '@/components/Buttons/GoCart.vue'
 import BackMain from "@/components/Buttons/BackMain.vue"
 import BarcodeInput from '@/components/BarcodeInput.vue'
+import BarcodeModal from '@/components/Modals/BarcodeModal.vue'
 export default {
   components:{
     MartMap,BackMain,
     ShoppingBox,GoCart,
-    BarcodeInput
+    BarcodeInput,BarcodeModal
+  },
+  methods:{
+    showThis(){
+      this.show = true
+    }
   }
 }
 </script>

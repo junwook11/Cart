@@ -18,7 +18,8 @@
       <b-button variant="outline-secondary" @click="gotoMap" class="wide-bb">Map</b-button>
       <b-button variant="outline-secondary" @click="gotoList" id="bb">List</b-button>
     </div>
-    <BarcodeInput></BarcodeInput>
+    <BarcodeInput @showModal="showThis"></BarcodeInput>
+    <BarcodeModal :show="show" @hide="show = false"></BarcodeModal>
   </div>
 </template>
 
@@ -26,8 +27,14 @@
 import Clock from '@/components/Clock.vue'
 import BarcodeInput from '@/components/BarcodeInput.vue'
 import AD from '@/components/AD.vue'
+import BarcodeModal from '@/components/Modals/BarcodeModal.vue'
 export default {
-  components: { Clock,BarcodeInput,AD },
+  data(){
+    return {
+      show: false
+    }
+  },
+  components: { Clock,BarcodeInput,AD,BarcodeModal },
   methods: {
     gotoMap() {
       this.$router.push("/map")
@@ -40,6 +47,9 @@ export default {
     },
     gotocart() {
       this.$router.push('/shopcart')
+    },
+    showThis(){
+      this.show = true
     }
 
   }

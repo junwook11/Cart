@@ -21,9 +21,9 @@ export default {
                 'id':999,
                 'title':inputD
             })
-            console.log(this.$store.state.carts)
             this.$refs.barcode.value = ""
-            this.$router.push("/shopcart")
+            this.$emit('showModal',true)
+
         }
     },
     mounted(){
@@ -31,11 +31,7 @@ export default {
             this.$refs.barcode.focus()
         },1000)
     },
-    watch:{
-        inputData(newData){
-            console.log(newData)
-        }
-    }
+
 }
 </script>
 
