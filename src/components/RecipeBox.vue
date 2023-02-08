@@ -32,10 +32,7 @@ export default {
   display: flex;
   flex-direction: column;
 }
-#shop-box{
-  width: 100%;
-  height: 100%;
-}
+
 #shop-menu{
   margin:10px;
   display: flex;

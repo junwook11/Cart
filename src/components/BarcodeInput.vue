@@ -1,5 +1,8 @@
 <template>
-  <input id="b-input" type="text" @keyup.enter="pressEnter" ref="barcode" style="border:none; outline: none;">
+  <input id="b-input" type="text" 
+  @keyup.enter="pressEnter" 
+  ref="barcode" 
+  style="border:none; outline: none;">
 </template>
 
 <script>
