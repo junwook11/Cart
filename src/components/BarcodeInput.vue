@@ -2,6 +2,7 @@
   <input id="b-input" type="text" 
   @keyup.enter="pressEnter" 
   ref="barcode" 
+  onfocus="this.blur()"
   style="border:none; outline: none;">
 </template>
 
