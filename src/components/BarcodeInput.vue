@@ -2,7 +2,7 @@
   <input id="b-input" type="text" 
   @keyup.enter="pressEnter" 
   ref="barcode" 
-  onfocus="this.blur()"
+  inputmode="none"
   style="border:none; outline: none;">
 </template>
 
@@ -30,6 +30,11 @@ export default {
         setInterval(() => {
             this.$refs.barcode.focus()
         },1000)
+    },
+    watch:{
+        inputData(newData){
+            console.log(newData)
+        }
     }
 }
 </script>
