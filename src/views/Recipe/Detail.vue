@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import BackList from '@/components/Buttons/BackList.vue'
+import BackMain from '@/components/Buttons/BackMain.vue'
 import Detail from '@/components/RecipeBox_detail.vue'
 export default {
   data(){
@@ -16,7 +16,7 @@ export default {
     }
   },
   components:{
-    BackList,Detail
+    BackMain,Detail
 
   },
   gotorecipe(data){

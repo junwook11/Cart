@@ -1,57 +1,67 @@
 <template>
-  <div>
-    <div id="app">
-    <div>
-      <div>
-        <p>Time</p>
-      </div>
-      <div id="login">
-        <div>
-          <p>ID:</p> <input type="email">
-          <br>
-          <p>PSWD:</p> <input type="passwd">
-        </div>
-        <button @click="gotoHome">Login</button>
-      </div>
-      </div> 
-  </div>
+  <div class="firstpage" @click="gotologin()">
+    <login :show="show" @hide="hideThis"></login>
+    <div class="login1">Feeling</div>
+    <div><img src="@/assets/login.jpg" class="inpage"></div>
+    <div class="login2">Different</div>
   </div>
 </template>
 
 <script>
+import login from '@/components/Modals/loginModal.vue'
 export default {
-    methods:{
-    gotoHome(){
-      this.$router.push('/main')
+  data(){
+    return{
+      show:false
+    }
+  },
+  components:{
+    login
+  },
+  methods:{
+    hideThis(){
+      this.show=false;
+    },
+    gotologin(){
+      this.show=true;
     }
   }
 }
 </script>
 
 <style>
-header,footer{
-  border-top: 2px solid gray;
-  border-bottom: 2px solid gray;
-}
-#app {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
 
-#login{
-  display: flex;
-  text-align: center;
+.firstpage{
+  background-color: #7e97ac;
+  display: relative;
+  justify-content: space-around;
+  align-content: center;
+  height: 100vh;
+  min-width: fit-content;
 }
-
-#app>header{
-  text-align: center;
+.login1{
+  position: absolute;
+  font-weight: bold;
+  font-size: 70px;
+  left: 9%;
+  top: 39%;
 }
-
-#app>div{
-  flex:1;
+.login2{
+  position: absolute;
+  font-weight: bold;
+  font-size: 70px;
+  right: 7%;
+  top: 39%;
 }
-#app>footer{
-  text-align: center;
+.inpage{
+  max-width: 100%; 
+  max-height: 100%; 
+  left: 0; 
+  right: 0; 
+  top: 0; 
+  bottom: 0; 
+  margin: auto; 
+  overflow: auto; 
+  position: fixed; 
 }
 </style>

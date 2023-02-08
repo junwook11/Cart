@@ -21,12 +21,13 @@ export default {
 }
 </script>
 
-<style>
-#app {
+<style scoped>
+/* #app {
   display: flex;
+  border: 10px solid black;
   flex-direction: column;
   justify-content: center;
-}
+} */
 #card{
   display: flex;
   justify-content: center;

@@ -18,6 +18,7 @@ import ListCompare from '../views/Shoplist/Compare'
 import RecipeMain from '../views/Recipe/Main'
 import RecipeList from '../views/Recipe/List'
 import RecipeDetail from '../views/Recipe/Detail'
+import Test from '../views/Recipe/Test'
 
 import ShopCartMain from '../views/Shopcart/Main'
 
@@ -83,6 +84,11 @@ const routes = [
     path:"/recipe/list/:id",
     name:"recipe-list",
     component: RecipeList
+  },
+  {
+    path:"/test",
+    name:"Test",
+    component: Test
   },
   {
     path:"/shopcart",

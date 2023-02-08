@@ -1,25 +1,21 @@
 <template>
-  <div id="main-container">
-    <div class="buttons-container">
-      <div id="ad-container">
-        <AD></AD>
-      </div>
-        <b-button variant="outline-secondary" id="bb">Parking</b-button>
-      <div class="inner-container">
-        <div id="bb-2" class="b-b-b">
-          <b-button variant="outline-secondary" id="bb-3" @click="gotocart">Cart</b-button>
-        </div>
-        <div id="bb-2" class="b-b-b">
-          <b-button variant="outline-secondary" id="bb-3" @click="logout">Logout</b-button>
-        </div>
+  <div class="Main_vue_box1">
+    <div class="Main_vue_box2">
+      <div class="Main_vue_AD1"><AD></AD></div>
+      <div class="Main_vue_parking">parking</div>
+      <div class="Main_vue_user">
+        <div>회원정보</div>
+        <div>로그아웃</div>
       </div>
     </div>
-    <div class="buttons-container">
-      <b-button variant="outline-secondary" @click="gotoMap" class="wide-bb">Map</b-button>
-      <b-button variant="outline-secondary" @click="gotoList" id="bb">List</b-button>
+    <div class="Main_vue_box3">
+      <div class="Main_vue_kita">
+        <div ></div>
+        <div>clock</div>
+      </div>
+      <div class="Main_vue_shopping">shopping</div>
+      <div class="Main_vue_jang">shopping product</div>
     </div>
-    <BarcodeInput @showModal="showThis"></BarcodeInput>
-    <BarcodeModal :show="show" @hide="show = false"></BarcodeModal>
   </div>
 </template>
 
@@ -27,14 +23,8 @@
 import Clock from '@/components/Clock.vue'
 import BarcodeInput from '@/components/BarcodeInput.vue'
 import AD from '@/components/AD.vue'
-import BarcodeModal from '@/components/Modals/BarcodeModal.vue'
 export default {
-  data(){
-    return {
-      show: false
-    }
-  },
-  components: { Clock,BarcodeInput,AD,BarcodeModal },
+  components: { Clock,BarcodeInput,AD },
   methods: {
     gotoMap() {
       this.$router.push("/map")
@@ -47,45 +37,67 @@ export default {
     },
     gotocart() {
       this.$router.push('/shopcart')
-    },
-    showThis(){
-      this.show = true
     }
 
   }
 }
 </script>
 
-<style>
-.buttons-container {
-  height: 50vh;
-  display: flex;
-  justify-content: space-between;
-}
-#ad-container{
-  width:600px;
-  height: 340px;
-}
-.inner-container {
+<style scoped>
+.Main_vue_box1{
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  height: 100vh;
+  /* min-width: fit-content; */
+  /* background: brown; */
 }
+.Main_vue_box2{
+  /* padding: 9%; */
+  border-top: 5px solid brown;
+  border-left: 5px solid brown;
+  border-right: 5px solid brown;
+  height: 50vh;
+  display: flex;
+}
+.Main_vue_AD1{
+  /* flex-grow: 3; */
+  width: 40vw;
+  border: 5px solid brown;
 
-#bb {
+}
+.Main_vue_parking{
+  flex-grow: 3;
+  border: 5px solid brown;
+
+}
+.Main_vue_user{
+  flex-grow: 1;
+  border: 5px solid brown;
+
+}
+.Main_vue_box3{
+  /* padding: 12%; */
+  border: 5px solid brown;
+  display:flex;
+  height: 50vh;
+
+}
+.Main_vue_kita{
+  /* flex-grow: 1; */
+  
+  border: 5px solid brown;
+
+}
+.Main_vue_shopping{
+  border: 5px solid brown;
   flex-grow: 2;
-  padding : -10px
-}
 
-#bb-2 {
-  height: 50%;
 }
+.Main_vue_jang{
+  border: 5px solid brown;
+  flex-grow: 1;
 
-.wide-bb {
-  flex-grow: 2;
-}
-
-#bb-3 {
-  height: 100%;
-  width: 100%;
 }
 </style>
