@@ -44,13 +44,6 @@ export default {
 </script>
 
 <style>
-/* #app {
-  width: 100vw;
-  display: flex;
-  text-align: center;
-  justify-content: center;
-
-} */
 
 #s-box {
   display: flex;

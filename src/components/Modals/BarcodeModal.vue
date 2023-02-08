@@ -1,12 +1,21 @@
 <template>
   <b-modal ref="barcode-modal" hide-footer hide-title size="lg">
-    <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
-    <b-button class="mt-2" variant="outline-warning" block @click="toggleModal">Toggle Me</b-button>
+    <div class="d-block text-center">
+      <AddItem :addId="$store.state.barcodeId"></AddItem>
+    </div>
+    <div class="btn-container">
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
+    </div>
   </b-modal>
 </template>
 
 <script>
+import AddItem from '@/components/Boxes/AddItem.vue'
 export default {
+  components: {
+    AddItem
+  },
   props: ["show"],
   methods: {
     showModal() {

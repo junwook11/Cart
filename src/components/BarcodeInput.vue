@@ -16,7 +16,7 @@ export default {
     methods:{
         pressEnter(){
             var inputD = this.$refs.barcode.value
-            console.log(inputD)
+            this.$store.state.barcodeId = inputD
             this.$store.state.carts.push({
                 'id':999,
                 'title':inputD
