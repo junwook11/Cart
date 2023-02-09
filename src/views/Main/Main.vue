@@ -115,6 +115,6 @@ export default {
 height: 50%;
 }
 .Main_vue_logout{
-  height: 50%;
+  height: 50;
 }
 </style>

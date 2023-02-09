@@ -12,6 +12,7 @@ export default {
 
 <style>
 #app{
+  text-align: center;
 }
 
 

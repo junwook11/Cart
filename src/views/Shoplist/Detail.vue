@@ -38,7 +38,7 @@ export default {
       this.$router.push('/list/compare')
     },
     hideThis() {
-      this.show = this.hideThis
+      this.showDel = this.hideThis
     },
     modalData(event){
       this.showDel = true

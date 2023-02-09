@@ -6,6 +6,7 @@
         @show="resetModal"
         @hidden="resetModal"
         @ok="handleOk"
+        size="xl"
       >
       <p style="text-align: center;">
         <img src="@/assets/favicon.png" alt="">
@@ -13,13 +14,16 @@
         <form ref="form" @submit.stop.prevent="handleSubmit" >
           <b-form-group
             label="Name"
-            label-for="name-input"
+            label-for="inputNum"
             invalid-feedback="Name is required"
             :state="nameState"
           >
             <b-form-input
-              id="name-input"
+              id="inputNum"
               ref="inputId"
+              value=""
+              @focus="onInputFocus"
+              @input="onInputChange"
               v-model="name"
               :state="nameState"
               required
@@ -29,12 +33,15 @@
         <form ref="form" @submit.stop.prevent="handleSubmit">
           <b-form-group
             label="Password"
-            label-for="password-input"
+            label-for="inputPass"
             invalid-feedback="password is required"
             :state="hidden"
           >
             <b-form-input
-              id="password-input"
+              id="inputPass"
+              value=""
+              @focus="onInputFocus"
+              @input="onInputChange"
               v-model="password"
               :state="hidden"
               required
@@ -42,17 +49,30 @@
             ></b-form-input>
           </b-form-group>
         </form>
+        <div class="keybaord-area">
+        <SimpleKeyboard
+          @onChange="onChange"
+          @onKeyPress="onKeyPress"
+          :input="inputName"
+          :inputName="inputName"
+        ></SimpleKeyboard>
+      </div>
       </b-modal>
   </template>
   
   <script>
+  import SimpleKeyboard from "@/components/Keyboard/SimpleKeyboard.vue";
     export default {
       data() {
         return {
           name: '',
           nameState: null,
-          submittedNames: []
+          submittedNames: [],
+          inputName:"inputNum"
         }
+      },
+      components:{
+        SimpleKeyboard
       },
       props:[
         "show"
@@ -94,7 +114,16 @@
             this.$bvModal.hide('modal-prevent-closing')
             this.$router.push('/main')
           })
-        }
+        },
+        onChange(input, inputName) {
+      console.log("change", inputName, input);
+      document.getElementById(inputName).value = input;
+    },
+    onKeyPress(button) {},
+    onInputChange(input) {},
+    onInputFocus(input) {
+      this.inputName = input.target.id;
+    }
       },
       watch:{
         show(newShow){
