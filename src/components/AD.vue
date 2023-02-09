@@ -9,17 +9,20 @@
   >
     <b-carousel-slide
       caption="First Slide"
-      img-src="https://picsum.photos/600/360/?image=10"
-      style="object-fit:contain;"
+      img-src="https://picsum.photos/1920/1080/?image=10"
+      class="h-100"
+      id="b-c-slide"
       
     ></b-carousel-slide>
     <b-carousel-slide
       caption="Second Slide"
-      img-src="https://picsum.photos/600/360/?image=12"
+      img-src="https://picsum.photos/1920/1080/?image=12"
+      id="b-c-slide"
     ></b-carousel-slide>
     <b-carousel-slide
       caption="Third Slide"
-      img-src="https://picsum.photos/600/360/?image=22"
+      img-src="https://picsum.photos/1920/1080/?image=22"
+      id="b-c-slide"
     ></b-carousel-slide>
   </b-carousel>
 </template>
@@ -31,5 +34,19 @@ export default {
 </script>
 
 <style>
-
+#b-c-slide{
+  width: 100%;
+  height: 100%;
+}
+#carousel-fade{
+  width: 100%;
+  height: 100%;
+}
+.carousel-inner{
+  width: 100%;
+  height: 100%;
+}
+#b-c-slide>img{
+  height: 100%;
+}
 </style>

@@ -4,8 +4,8 @@
       <div class="Main_vue_AD1"><AD></AD></div>
       <div class="Main_vue_parking">parking</div>
       <div class="Main_vue_user">
-        <div>회원정보</div>
-        <div>로그아웃</div>
+        <div class="Main_vue_info">회원정보</div>
+        <div class="Main_vue_logout" @click="logout">로그아웃</div>
       </div>
     </div>
     <div class="Main_vue_box3">
@@ -13,30 +13,41 @@
         <div ></div>
         <div>clock</div>
       </div>
-      <div class="Main_vue_shopping">shopping</div>
-      <div class="Main_vue_jang">shopping product</div>
+      <div class="Main_vue_shopping" @click="gotoMap">shopping</div>
+      <div class="Main_vue_jang" @click="gotoList">shopping product</div>
     </div>
+    <BarcodeInput @showModal="showThis"></BarcodeInput>
+    <BarcodeModal :show="show" @hide="show = false"></BarcodeModal>
   </div>
 </template>
 
 <script>
 import Clock from '@/components/Clock.vue'
+import BarcodeModal from '@/components/Modals/BarcodeModal.vue'
 import BarcodeInput from '@/components/BarcodeInput.vue'
 import AD from '@/components/AD.vue'
 export default {
-  components: { Clock,BarcodeInput,AD },
+  data(){
+    return{
+      show:false
+    }
+  },
+  components: { Clock,BarcodeInput,AD,BarcodeModal },
   methods: {
     gotoMap() {
       this.$router.push("/map")
     },
     gotoList() {
-      this.$router.push('/list')
+      this.$router.push(`/list/detail/${this.$store.state.list}`)
     },
     logout() {
       this.$router.push('/')
     },
     gotocart() {
       this.$router.push('/shopcart')
+    },
+    showThis() {
+      this.show = true
     }
 
   }
@@ -99,5 +110,11 @@ export default {
   border: 5px solid brown;
   flex-grow: 1;
 
+}
+.Main_vue_info{
+height: 50%;
+}
+.Main_vue_logout{
+  height: 50%;
 }
 </style>

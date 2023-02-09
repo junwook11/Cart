@@ -5,7 +5,7 @@
     </div>
     <div class="btn-container">
       <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
-      <b-button class="mt-3" variant="outline-danger" block @click="hideModal">Close Me</b-button>
+      <b-button class="mt-3" variant="outline-danger" block @click="gotoRecipe">레시피 보기</b-button>
     </div>
   </b-modal>
 </template>
@@ -26,6 +26,9 @@ export default {
       this.$refs['barcode-modal'].hide()
       this.$emit('hide', false)
     },
+    gotoRecipe(){
+      this.$router.push('/recipe')
+    }
   },
   watch: {
     show(newShow) {

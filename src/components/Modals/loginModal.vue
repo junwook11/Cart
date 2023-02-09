@@ -19,6 +19,7 @@
           >
             <b-form-input
               id="name-input"
+              ref="inputId"
               v-model="name"
               :state="nameState"
               required
@@ -59,6 +60,7 @@
       methods: {
         showModal(){
             this.$refs['login_modal'].show()
+            
             this.$emit('hide',false)
         },
         hideModal(){
