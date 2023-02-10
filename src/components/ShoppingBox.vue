@@ -34,7 +34,10 @@ export default {
 
   },
   async created(){
-    const result = await api.jsonplaceholder.findAll()
+    const result = await api.cartdata.findUser(1)
+    console.log(result.data)
+    this.$store.state.userName = result.data.user_name
+    console.log(this.$store.state.userName)
     this.menus = result.data
   },
 }

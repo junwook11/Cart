@@ -17,12 +17,12 @@ export default {
   components: { CartMenu },
   data(){
     return{
-      Imgs:[]
+      Imgs:[],
+      
     }
   },
   async created(){
-    var image = await api.jsonplaceholder.findImg()
-    this.Imgs = image.data
+
   }
 }
 

@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import {api} from '../utils/axios'
 export default {
     data(){
         return{
@@ -14,13 +15,14 @@ export default {
         }
     },
     methods:{
-        pressEnter(){
+        async pressEnter(){
             var inputD = this.$refs.barcode.value
-            this.$store.state.barcodeId = inputD
-            this.$store.state.carts.push({
-                'id':999,
-                'title':inputD
-            })
+            var iteminfo = await api.cartdata.getItembyId(inputD)
+            var itemData = iteminfo.data
+            var companyinfo = await api.cartdata.getCompbyId(itemData.company_seq)
+            console.log(itemData)
+            this.$store.commit('CHANGE_BARCODE_ITEM',itemData)
+            this.$store.commit('SET_COMPANY_NAME',`${companyinfo.data.company_name} ${itemData.product_info} ${itemData.price} 원`)
             this.$refs.barcode.value = ""
             this.$emit('showModal',true)
 

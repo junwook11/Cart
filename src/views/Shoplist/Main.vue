@@ -5,7 +5,7 @@
     <div id="container">
       <div id="s-box">
         <div v-for="(list, index) in lists" :key="index" id="inner-s-box">
-          <div @click="gotoDetail(index)">List{{ list }}</div>
+          <div @click="gotoMain(index + 1)">List{{ list }}</div>
           <ShopBox :showDel="false"></ShopBox>
         </div>
       </div>
@@ -16,6 +16,7 @@
 </template>
 
 <script>
+import { api } from '@/utils/axios'
 import ShopBox from '@/components/ShoppingBox.vue'
 import BackMain from '@/components/Buttons/BackMain.vue'
 import BarcodeInput from '@/components/BarcodeInput.vue'
@@ -31,9 +32,11 @@ export default {
     ShopBox, BackMain, BarcodeInput, BarcodeModal
   },
   methods: {
-    gotoDetail(data) {
-      this.$router.push(`/list/detail/${data + 1}`)
-      this.$store.commit("SET_LIST_NUM", data + 1)
+    async gotoMain(data) {
+      this.$router.push(`/main`)
+      this.$store.commit("SET_LIST_NUM", data)
+      var arr = await api.cartdata.getList(data)
+      this.$store.commit("SET_LIST",arr)
     },
     showThis() {
       this.show = true

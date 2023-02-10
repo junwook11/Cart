@@ -112,7 +112,7 @@
           // Hide the modal manually
           this.$nextTick(() => {
             this.$bvModal.hide('modal-prevent-closing')
-            this.$router.push('/main')
+            this.$router.push('/list')
           })
         },
         onChange(input, inputName) {

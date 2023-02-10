@@ -14,7 +14,6 @@
 
 <script>
 import CartListMenu from './CartListMenu.vue';
-import {api} from '../utils/axios'
 export default {
     components:{
         CartListMenu,

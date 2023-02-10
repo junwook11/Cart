@@ -1,5 +1,5 @@
 <template>
-    <div :class="keyboardClass"></div>
+   <div :class="keyboardClass"></div>
 </template>
 
 <script>

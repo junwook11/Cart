@@ -14,7 +14,7 @@
         <div>clock</div>
       </div>
       <div class="Main_vue_shopping" @click="gotoMap">shopping</div>
-      <div class="Main_vue_jang" @click="gotoList">shopping product</div>
+      <div class="Main_vue_jang" @click="gotoListdetail">shopping product</div>
     </div>
     <BarcodeInput @showModal="showThis"></BarcodeInput>
     <BarcodeModal :show="show" @hide="show = false"></BarcodeModal>
@@ -37,7 +37,7 @@ export default {
     gotoMap() {
       this.$router.push("/map")
     },
-    gotoList() {
+    gotoListdetail() {
       this.$router.push(`/list/detail/${this.$store.state.list}`)
     },
     logout() {

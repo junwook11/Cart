@@ -1,8 +1,8 @@
 <template>
     <div>
       <!-- <img :src=urls[addId].url alt="img" style="height: 350px; "> -->
-      <p>{{ $store.state.barcodeId }}</p>
-      <p>{{ $store.state.barcodeId }}</p>
+      <p>{{ addId }}</p>
+      <p>{{ addName }}</p>
     </div>
   </template>
   
@@ -18,10 +18,8 @@
       "addId", "addName"
     ],
     async created(){
-      var image = await api.jsonplaceholder.findImg()
+      var image = await api.cartdata.getItembyId(this.$store.state.barcodeId)
       this.urls = image.data
-      console.log(urls)
-      console.log(this.$store.state.barcodeId)
     }
   }
   </script>
