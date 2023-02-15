@@ -15,12 +15,6 @@ export default {
       // making bridge setting
       var bridge = new WebOSServiceBridge();
 
-      if (bridge) {
-        this.$store.commit('SET_POS', {
-          x: 4,
-          y: 4
-        })
-      }
       var url = 'luna://com.testui.app.service/mypos';
       var params = '{}';
 
@@ -29,8 +23,8 @@ export default {
         myx = JSON.parse(msg).x;
         myy = JSON.parse(msg).y;
         this.$store.commit('SET_POS', {
-          x: myx,
-          y: myy
+          x: 6,
+          y: 6
         })
       }
 
