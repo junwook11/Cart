@@ -70,9 +70,7 @@ export default {
     //     bridge.call(url, params);
     //   }, 1000);
     // }
-    setTimeout(() => {
-      getmypos();
-    },2000)
+    this.getmypos();
   }
 }
 </script>
