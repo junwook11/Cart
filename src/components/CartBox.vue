@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <h4>CartMenu</h4>
-    <div id="cart-box" style="height:600px; border: 1px solid grey; padding: 10px;">
+    <div id="cart-box" style="border: 1px solid grey; padding: 10px;">
         <div v-for="(item,index) in this.$store.state.carts" :key="index" id="card">
-            <CartMenu :Name="item.title" :Id="item.id" :img="Imgs[index].url"></CartMenu>
-            <div>{{ index }}</div>
+            <CartMenu :item="item"></CartMenu>
         </div>
     </div>
-  </div>
 </template>
 
 <script>
@@ -17,15 +13,10 @@ export default {
   components: { CartMenu },
   data(){
     return{
-      Imgs:[],
       
     }
-  },
-  async created(){
-
-  }
 }
-
+}
 </script>
 
 <style>
@@ -33,10 +24,11 @@ export default {
     display: flex;
     flex-wrap: wrap;
     overflow-y: scroll;
-    height: 600px;
-}
+    background-color: white;
+  opacity: 0.7;}
 #card{
     width: 25%;
+    height: 40%;
 }
 
 </style>

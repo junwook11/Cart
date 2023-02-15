@@ -4,7 +4,7 @@ import VueRouter from 'vue-router'
 import Login from '../views/Login/Login'
 
 import MainHome from '../views/Main/Main'
-
+import Park from '../views/Park/Main'
 import MapMain from '../views/Map/Main'
 
 import BillMain from '../views/Bill/Main'
@@ -25,6 +25,11 @@ import ShopCartMain from '../views/Shopcart/Main'
 Vue.use(VueRouter)
 
 const routes = [
+  {
+    path:"/park",
+    name:"park",
+    component:Park
+  },
   {
     path:"/",
     name:"login",
@@ -66,7 +71,7 @@ const routes = [
     component: ListDetail
   },
   {
-    path:"/list/compare",
+    path:"/list/compare/:id",
     name:"list-compare",
     component: ListCompare
   },

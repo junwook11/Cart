@@ -1,7 +1,7 @@
 <template>
   <div>
     <b-card
-    title="Card Title"
+    :title="item.title"
     :img-src=img
     img-alt="Image"
     img-top
@@ -10,18 +10,30 @@
     class="mb-2 card-margin"
   >
     <b-card-text>
-        {{ Name }}
+        {{ item.title }}
+        {{ item.price }}원
+        {{ item.stock }}개
     </b-card-text>
   </b-card>
   </div>
 </template>
 
 <script>
+import {api} from '@/utils/axios'
 export default {
-    props:["Name","Id","img"],
+    props:["item"],
     data(){
         return{
+          img:""
         }
+    },
+    mounted(){
+      console.log(this.item)
+    },
+    async created(){
+        this.img = `https://i8a102.p.ssafy.io/api/image/product/${this.item.id}`
+        
+
     }
 }
 </script>

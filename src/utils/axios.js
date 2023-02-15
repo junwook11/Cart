@@ -1,14 +1,23 @@
 import axios from "axios"
 
 const request = axios.create({
-    baseURL : "http:///52.78.24.35/api"
+    baseURL : "https://i8a102.p.ssafy.io/api"
 })
 
 export const api = {
     cartdata : {
-        findUser:(id) => request.get(`/user/all/${id}`),
+        findUserbySeq:(seq) => request.get(`/user/all/${seq}`),
+        findUserbyId:(userid) => request.get(`user/${userid}`),
         getItembyId:(itemid) => request.get(`/product/searchbyseq/${itemid}`),
+        getItembyName:(itemname) => request.get(`/product/searchbyname/${itemname}`),
         getCompbyId:(compid) => request.get(`/company/${compid}`),
-        getList:(id) => request.get(`/cartlist/${id}`)
+        getList:(id) => request.get(`/cartlist/${id}`), //장바구니 목록 조회
+        // getdetailList:(id) => request.get(``),
+        purchaseList:(list) => request.post(`/purchase`,list),
+        getImgbyId:(itemid) => request.get(`/image/product/${itemid}`),
+        getRecipebyItem:(itemid) => request.get(`recipe/product/${itemid}`),
+        getRecipeImg:(rseq) => request.get(`/image/recipe/${rseq}`),
+        getTheme:() => request.get(`/theme`),
+        getThemebySeq:(tseq) => request.get(`/theme/seq/${tseq}`)
     }
 }

@@ -4,15 +4,16 @@
         id="nav-scroller"
         ref="content"
       >
-      <div v-for="(menu,index) in menus" :key="index" id="shop-box">
+      <div v-for="(menu,index) in list.products" :key="index" id="shop-box">
         <ShoppingMenu 
         :compMenu="compMenu" 
-        :menuName="menu.title" 
-        :menuId="menu.id" 
+        :menuId="menu.product_seq" 
+        :menuPrice="menu.price"
+        :menuStock="menu.cnt" 
         :showDel="showDel"
         @showModal="$emit('showModal',[index,menu.title])"
         id="shop-menu">
-      </ShoppingMenu>
+        </ShoppingMenu>
       </div>
     </b-card-body>
   </b-list-group>
@@ -25,21 +26,30 @@ export default {
   data(){
     return{
       menus:[],
+      listnumber:0
     }
   },
   props:
-  ["showDel","compMenu"],
+  ["showDel","compMenu","list"],
   components: { ShoppingMenu },
   methods:{
 
   },
   async created(){
-    const result = await api.cartdata.findUser(1)
-    console.log(result.data)
-    this.$store.state.userName = result.data.user_name
-    console.log(this.$store.state.userName)
-    this.menus = result.data
+    console.log(this.$store.state.userId)
+    const result = await api.cartdata.getList(this.$store.state.userId)
+    // this.listnumber=result.data.length
+    // console.log(result)
+    // console.log(this.listnumber)
+    var result_size = result.data[0].products.length
+    console.log(result_size)
+    console.log(this.$store.state.userId)
+    
+    this.menus = result.data[0]
   },
+  mounted(){
+    console.log(this.$store.state.userID)
+  }
 }
 </script>
 
@@ -51,11 +61,10 @@ export default {
   overflow:auto;
   border: 1px solid grey;
   border-radius: 5px;
+  background-color: white;
+  opacity: 0.9;
 }
-#menubox{
-  display: flex;
-  flex-direction: column;
-}
+
 #shop-box{
   width: 100%;
 }

@@ -1,10 +1,16 @@
 <template>
   <b-list-group-item id="menu-box">
-    <div id="menu-id" :class="{ 'in-cart': list === true && compMenu === true }">
-      {{ menuId }}
+    <div id="menu-name" :class="{ 'in-cart': list === true && compMenu === true }">
+      No.{{ menuId }}
     </div>
     <div id="menu-name" :class="{ 'in-cart': list === true && compMenu === true }">
       {{ menuName }}
+    </div>
+    <div id="menu-name" :class="{ 'in-cart': list === true && compMenu === true }">
+      {{ menuPrice }}원
+    </div>
+    <div id="menu-name" :class="{ 'in-cart': list === true && compMenu === true }">
+      {{ menuStock }}개
     </div>
     <DeleteMenu 
     v-if="showDel" 
@@ -16,17 +22,20 @@
 </template>
 
 <script>
+import {api} from '@/utils/axios'
 import DeleteMenu from '@/components/Buttons/DeleteMenu.vue';
 export default {
   data() {
     return {
       list: false,
+      menuName:""
 
     }
   },
   props:[
-    "menuName",
     "menuId",
+    "menuStock",
+    "menuPrice",
     "showDel",
     "compMenu",
     ],
@@ -36,26 +45,40 @@ export default {
   methods:{
 
   }, 
-  created() {
-    var arr = this.$store.state.carts
-    for (var i in arr) {
-      if (arr[i].title === this.menuName)
+  async created() {
+    const naming = await api.cartdata.getItembyId(this.menuId);
+    this.menuName=naming.data.product_name
+    console.log(this.menuName)
+    var cartArr = this.$store.state.carts
+    console.log(cartArr)
+    console.log(this.menuName)
+    for(var i in cartArr){
+      console.log(cartArr[i].title)
+      if(this.menuName === cartArr[i].title)
         this.list = true
+  
     }
-  }
+    console.log(this.list)
+    
+  },
+
 }
 
 </script>
 
-<style>
+<style scoped>
 #menu-box {
   width: 100%;
   display: flex;
   justify-content: space-around;
+  height: 100%;
 }
 
 #menu-name {
   text-align: center;
+  width: 100%;
+  height: 100%;
+  padding: 0;
 }
 
 .in-cart {

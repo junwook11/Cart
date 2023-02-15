@@ -1,13 +1,12 @@
 <template>
     <div>
-      <b-form-select v-model="selected" :options="options" size="5"></b-form-select>
+      <b-form-select v-model="selected" :options="options" size="lg" select-size="0"></b-form-select>
       <div class="mt-3">Price: <strong>{{ selected }}</strong></div>
     </div>
   </template>
   
   <script>
     export default {
-      
       data() {
         return {
           selected: null,

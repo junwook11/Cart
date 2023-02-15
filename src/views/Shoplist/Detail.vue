@@ -1,17 +1,17 @@
 <template>
-  <div>
-    <BackMain id="back-button"></BackMain>
-    Shop Detail
+  <div id="app">
+    <div id="title-size">
+      <BackMain id="back-button" type="button" class="btn btn-danger">GoBack</BackMain>
+      <h1 id="title-name">Shop List Detail</h1>
+    </div>
     <DeleteModal :show="showDel" :delId="itemId" :delName="itemName" @hide="hideThis">
     </DeleteModal>
-    <div>
-      <h3>List{{ this.$store.state.list }}</h3>
-      <ShopBox :showDel="true" @showModal="modalData">
+    <div id="shop-detail-box">
+      <h3>List{{ this.$store.state.list.cart_name }}</h3>
+      <ShopBox :list="this.$store.state.list" :showDel="true" @showModal="modalData">
       </ShopBox>
     </div>
-    <button @click="moveCompare">button</button>
-    <BarcodeInput @showModal="showThis"></BarcodeInput>
-    <BarcodeModal :show="show" @hide="show = false"></BarcodeModal>  </div>
+ </div>
 </template>
 
 <script>
@@ -34,9 +34,6 @@ export default {
     DeleteModal,BarcodeModal
   },
   methods: {
-    moveCompare() {
-      this.$router.push('/list/compare')
-    },
     hideThis() {
       this.showDel = this.hideThis
     },
@@ -53,8 +50,7 @@ export default {
 </script>
 
 <style>
-#back-button {
-  position: absolute;
-  top: 0;
+#shop-detail-box{
+  height: 80%;
 }
 </style>

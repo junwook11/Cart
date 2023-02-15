@@ -1,7 +1,17 @@
 <template>
-  <div class="back">
-    <h3 style="color:white">Select Dish</h3>
-   <Detail id="container"></Detail>
+  <div style="height: 100%;">
+    <div id="title-size">
+      <BackMain id="back-button"></BackMain>
+      <h1 id="title-name">Select Dish</h1>
+    </div>
+    <div class="bb2">
+      <div class="box3">
+        <div v-for="(list,index) in lists" :key="index" id="inner-s-box">
+          <div @click="gotorecipe(index)">List {{ list }}</div>
+          <Detail @click="gotorecipe(index)"></Detail>
+        </div>
+      </div>
+    </div>
   </div>
 
 </template>
@@ -12,29 +22,26 @@ import Detail from '@/components/RecipeBox_detail.vue'
 export default {
   data(){
     return{
-      list:[1,2,3]
+      lists:[1,2,3]
     }
   },
   components:{
     BackMain,Detail
 
   },
-  gotorecipe(data){
-    this.$router.push(`/recipe/list/${data+1}`)
+  methods:{
+    gotorecipe(data){
+      this.$router.push(`/recipe/list/${data+1}`)
+      console.log("clicked")
+    }
   }
 }
 </script>
 
-<style>
-#back-button{
-  position: absolute;
-  top: 0;
-}
+<style scoped>
+
 #container{
-  height : 200%;
-  width : 100%;
+  
 }
-.back{
-  background-color: rgb(92, 83, 83);
-}
+
 </style>

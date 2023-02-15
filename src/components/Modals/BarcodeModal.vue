@@ -1,11 +1,11 @@
 <template>
   <b-modal ref="barcode-modal" hide-footer hide-title size="xl">
     <div class="d-block text-center">
-      <AddItem :addId="$store.state.barcodeItem.product_seq" :addName="$store.state.barcodeItem
-      .full_name"></AddItem>
+      <AddItem :addId="$store.state.barcodeItem.product_seq" :addName="$store.state.full_name"></AddItem>
     </div>
-    <div>
-
+    <div id="comp-item-container">
+      <p>함께 비교하기 좋은 상품</p>
+      <CompareItem></CompareItem>
     </div>
     <div class="btn-container">
       <b-button class="mt-3" variant="outline-danger" block @click="putCart">카트에 담기</b-button>
@@ -16,6 +16,7 @@
 
 <script>
 import AddItem from '@/components/Boxes/AddItem.vue'
+import CompareItem from '../Boxes/CompareItem.vue'
 export default {
   data(){
     return{
@@ -23,7 +24,8 @@ export default {
     }
   },
   components: {
-    AddItem
+    AddItem,
+    CompareItem
   },
   props: ["show"],
   methods: {
@@ -39,13 +41,33 @@ export default {
       this.$router.push('/recipe')
     },
     putCart(){
+      var flag=1
+      var index = this.$store.state.carts.length
+      // console.log(index)
+      // console.log(flag)
+      for(let i=0;i<index;i++){
+        if(this.$store.state.barcodeItem.product_seq==this.$store.state.carts[i].id){
+          this.$store.state.carts[i].stock+=this.$store.state.barcodeItem.stock
+          this.$store.state.carts[i].price+=(this.$store.state.barcodeItem.price)*(this.$store.state.barcodeItem.stock)
+          flag=2
+        }
+      }
+      if(flag==1){
       this.$store.commit('ADD_ITEM',{
+        
         id:this.$store.state.barcodeItem.product_seq,
-        title:this.$store.state.barcodeItem.product_name
-      })
-      console.log(this.$store.state.carts)
+        title:this.$store.state.barcodeItem.product_name,
+        price:this.$store.state.barcodeItem.price*this.$store.state.barcodeItem.stock,
+        stock:this.$store.state.barcodeItem.stock,
+        img:`${this.$store.state.barcodeItem.imageInfos[0].save_folder}/${this.$store.state.barcodeItem.imageInfos[0].save_name}`
+      })}
+      this.$store.commit('ADD_PRICE',this.$store.state.barcodeItem.price*this.$store.state.barcodeItem.stock)
+      this.$store.commit('ADD_STOCK',this.$store.state.barcodeItem.stock)
+      // console.log(this.$store.state.carts[0])
+      this.$store.state.barcodeItem.stock=1
       this.hideModal()
-      this.$router.push('/shopcart')
+      if(this.$route.path !== '/shopcart')
+        this.$router.push('/shopcart')
     }
   },
   async created(){
@@ -62,5 +84,10 @@ export default {
 </script>
 
 <style>
-
+#comp-item-container{
+  height: 50%;
+}
+.btn-container{
+  height: 10%;
+}
 </style>

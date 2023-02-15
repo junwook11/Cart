@@ -6,7 +6,7 @@
         style="position:relative; height:500px; margin: 20px; overflow-y:scroll;" 
       >
       <div v-for="(cart,index) in $store.state.carts" :key="index" id="shop-box">
-        <CartListMenu :CartName="cart.title" :CartId="cart.id" id="shop-menu"></CartListMenu>
+        <CartListMenu :Cartnum="index" id="shop-menu"></CartListMenu>
       </div>
     </b-card-body>
   </div>
@@ -27,6 +27,7 @@ export default {
 #menubox{
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 #shop-box{
   width: 100%;

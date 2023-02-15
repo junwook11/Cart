@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <div class="box1">
-      <h3>Select Theme</h3>
+  <div style="height:100%">
+    <div id="title-size">
+      <BackMain id="back-button"></BackMain>
+      <h1 id="title-name">Select Theme</h1>
     </div>
     <div class="bb2">
       <div class="box3">
-        <div v-for="(list,index) in lists" :key="index" id="inner-s-box">
-          <div @click="gotoDetail(index)"><p class="mainfont">{{ list }}</p></div>
-          <RecipeBox @click="gotoDetail(index)" :imgURL="lists2[index]" :imgindex="index"></RecipeBox>  
+        <div v-for="(th,index) in theme" :key="index" id="inner-s-box">
+          <div @click="gotoDetail(index)"><p class="mainfont">{{ th }}</p></div>
+          <RecipeBox :list="th"></RecipeBox>
         </div>
       </div>
     </div>
@@ -17,12 +18,12 @@
 <script>
 import RecipeBox from '@/components/RecipeBox.vue'
 import BackMain from '@/components/Buttons/BackMain.vue'
+import { api } from '@/utils/axios'
 export default {
     data(){
       return{
-        
-        lists:["백종원 요리비책","Cookstargram",`_Season_`],
-        lists2:[`11.png`,"111.jpg","season.jpg"],
+        lists:[],
+        theme:[],
       }
     },
     
@@ -34,35 +35,48 @@ export default {
     },
     components:{
       BackMain,RecipeBox
+    },
+    async created(){
+      var recipe = await api.cartdata.getRecipebyItem(this.$store.state.barcodeItem.product_seq)
+      for(let i in recipe.data){
+        var thm = recipe.data[i].theme_seq
+        if(!this.theme.includes(thm)){
+          this.theme.push(thm)
+        }
+      }
+      console.log(this.lists)
     }
 }
 </script>
 
-<style>
-#back-button{
-  position: absolute;
-  top: 0;
-}
+<style scoped>
+
 #container{
-  overflow-x: scroll;
   /* position: flex;
   flex-direction: column; */
 }
 .box3{
-  width:800px;
   display: flex;
   margin-left:30px;
+  overflow-x: scroll;
+  height: 100%;
 }
 .bb2{
-  padding-top : 30px;
   background-color: rgb(92 83 29 / 46%);
-  height: 670px;
-  padding-left: 22px;
+  height: 86%;
 }
 .mainfont{
-  font-size: x-large;
+  font-size: 40px;
   font-family: 'Staatliches', cursive;
   letter-spacing: 5px;
 }
-
+#inner-s-box{
+  height: 100%;
+  min-width: 35%;
+  border: 5px solid black;
+}
+#inner-img{
+  height: 80%;
+  width: 85%;
+}
 </style>

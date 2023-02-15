@@ -5,42 +5,63 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    userName: "",
-    list: "",
-    carts: [],
-    barcodeItem: {
-      "product_seq": 0,
-      "product_name": "",
-      "company_seq": 0,
-      "area_seq": 0,
-      "weight": "",
-      "product_info": "",
-      "price": 0,
-      "discount_price": 0,
-      "discount_rate": 0,
-      "stock": 0,
-      "imageInfos": null,
-      "_deleted": false,
-      "full_name":""
-    }
+    loginUser:{},
+    userId:"",
+    list: {},
+    carts: [],cart_x:2,cart_y:2,
+    wishs:[],
+    barcodeItem: {},
+    full_name:"",
+    purchase_list:{
+    //   purchase_seq:0,
+    //     user_seq:0,
+    //     purchase_date:"",
+    //     total_price:0,
+    //     purchase_list:[{
+    //       purchase_detail_seq:0,
+    //       purchase_seq:0,
+    //       product_seq:0,
+    //       stock:0,
+    //       price:0,
+    //       sale_price:0
+    // }]
+    },
+    total_price:0,
+    total_stock:0
   },
   getters: {
   },
   mutations: {
-    SET_LIST_NUM(state, data) {
+    SET_LOGIN_USER(state,data){
+      state.loginUser = data
+    },
+    SET_USER_NAME(state,data){
+      state.userId = data
+    },
+    SET_LIST(state, data) {
       state.list = data
     },
-    ADD_CART_MENU(state, data) {
-      state.carts.append(data)
+    ADD_WISH_MENU(state, data) {
+      state.wishs.push(data)
     },
-    CHANGE_BARCODE_ITEM(state, data) {
+    CHANGE_BARCODE_ID(state, data) {
       state.barcodeItem = data
     },
     SET_COMPANY_NAME(state,data){
-      state.barcodeItem.full_name = data
+      state.full_name = data
     },
     ADD_ITEM(state, data) {
       state.carts.push(data)
+    },
+    ADD_PRICE(state,data){
+      state.total_price += data
+    },
+    ADD_STOCK(state,data){
+      state.total_stock+=data
+    },
+    SET_POS(state,data){
+      state.cart_x = data.x;
+      state.cart_y = data.y;
     },
 
   },

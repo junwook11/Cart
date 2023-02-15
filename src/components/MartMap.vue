@@ -1,6 +1,6 @@
 <template>
     <div>
-      <table border="1" width="500px" height="500px" align = "center" ref="tb1">
+      <table border="1" height="90%" width="90%" align = "center" ref="tb1">
           <thead bgcolor="blue" height="10%">
             <tr>
               <td></td>
@@ -527,10 +527,7 @@
   </script>
   
   <style>
-  #back-button{
-    position: absolute;
-    top: 0;
-  }
+
   .here{
     background-color: red;
   }

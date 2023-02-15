@@ -1,6 +1,7 @@
 <template>
-  <div onload="showClock">
-    {{now}}
+  <div>
+    <p style="color:white">{{ year }}</p>
+    <p style="font-size:20px;padding-bottom: 1%;color:white" >{{ now }}</p>
   </div>
 </template>
 
@@ -8,14 +9,19 @@
 export default {
     data(){
         return{
+            year:"",
             now:""
         }
+    },
+    mounted(){
+        this.showClock();
     },
     methods:{
         showClock(){
             const date = new Date()
 
-            this.now = `${date.getHours}:${date.getMinutes}:${date.getSeconds}`
+            this.year = `${date.getFullYear()}:${date.getMonth()}:${date.getDay()}`
+            this.now = `${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
             setTimeout(() => {
                this.showClock() 
             }, 1000);
