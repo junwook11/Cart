@@ -23,8 +23,8 @@ export default {
         myx = JSON.parse(msg).x;
         myy = JSON.parse(msg).y;
         this.$store.commit('SET_POS', {
-          x: this.$store.state.cart_x+1,
-          y: this.$store.state.cart_y+1
+          x: myx,
+          y: myy
         })
       }
 
