@@ -14,30 +14,27 @@ export default {
       var myy = 0;
       // making bridge setting
       var bridge = new WebOSServiceBridge();
-
       var url = 'luna://com.testui.app.service/mypos';
       var params = '{}';
 
       //call back func (if get scanned rssi data, it works)
-      function callback(msg) {
-        myx = JSON.parse(msg).x;
-        myy = JSON.parse(msg).y;
-        this.$store.commit('SET_POS', {
-          x: myx,
-          y: myy
-        })
-      }
 
       bridge.url = url;
-      bridge.onservicecallback = callback;
+      bridge.onservicecallback = this.callback2;
       setInterval(() => {
         bridge.call(url, params);
-        this.$store.commit('SET_POS', {
-          x: this.$store.state.cart_x+1,
-          y: this.$store.state.cart_y+1
-        })
       }, 1000);
+    },
+
+    callback2(msg) {
+      var myx = JSON.parse(msg).x;
+      var myy = JSON.parse(msg).y;
+      this.$store.commit('SET_POS', {
+        x: myx,
+        y: myy
+      })
     }
+
   },
   mounted() {
 
